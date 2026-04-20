@@ -1,0 +1,31 @@
+import axiosInstance from "./axiosInstance";
+import type { LoginResponse, RegisterResponse } from "../types";
+
+export const authService = {
+  async login(username: string, password: string): Promise<LoginResponse> {
+    const { data } = await axiosInstance.post<LoginResponse>(
+      "/api/Authenticate/login",
+      {
+        username,
+        password,
+      },
+    );
+    return data;
+  },
+
+  async register(
+    username: string,
+    email: string,
+    password: string,
+  ): Promise<RegisterResponse> {
+    const { data } = await axiosInstance.post<RegisterResponse>(
+      "/api/Authenticate/register",
+      {
+        username,
+        email,
+        password,
+      },
+    );
+    return data;
+  },
+};
