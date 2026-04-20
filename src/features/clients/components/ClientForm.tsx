@@ -123,23 +123,37 @@ export default function ClientForm({ initialValues, onSubmit, onBack, loading }:
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                label={req(t('clients.fields.mobile'))}
-                {...register('celular')}
-                error={!!errors.celular}
-                helperText={errors.celular?.message}
-                fullWidth
-                inputProps={{ maxLength: 20 }}
+              <Controller
+                name="celular"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label={req(t('clients.fields.mobile'))}
+                    onChange={(e) => field.onChange(e.target.value.replace(/[^0-9\s()\-+]/g, ''))}
+                    error={!!errors.celular}
+                    helperText={errors.celular?.message}
+                    fullWidth
+                    inputProps={{ maxLength: 20 }}
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                label={t('clients.fields.other_phone')}
-                {...register('otroTelefono')}
-                error={!!errors.otroTelefono}
-                helperText={errors.otroTelefono?.message}
-                fullWidth
-                inputProps={{ maxLength: 20 }}
+              <Controller
+                name="otroTelefono"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label={t('clients.fields.other_phone')}
+                    onChange={(e) => field.onChange(e.target.value.replace(/[^0-9\s()\-+]/g, ''))}
+                    error={!!errors.otroTelefono}
+                    helperText={errors.otroTelefono?.message}
+                    fullWidth
+                    inputProps={{ maxLength: 20 }}
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12} sm={6}>

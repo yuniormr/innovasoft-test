@@ -43,11 +43,12 @@
       "email_required": "Email is required",
       "email_invalid": "Enter a valid email",
       "password_required": "Password is required",
-      "password_min": "Password must be at least 8 characters",
+      "password_min": "Password must be at least 6 characters",
       "password_max": "Password cannot exceed 20 characters",
       "password_uppercase": "Must contain at least one uppercase letter",
       "password_lowercase": "Must contain at least one lowercase letter",
-      "password_number": "Must contain at least one number"
+      "password_number": "Must contain at least one number",
+      "password_special": "Must contain at least one special character"
     },
     "invalid_credentials": "Invalid username or password.",
     "login": "Sign in",
@@ -109,7 +110,8 @@
       "gender_required": "Gender is required",
       "bio_required": "Personal bio is required",
       "bio_max": "Maximum 200 characters",
-      "interests_required": "Interests are required"
+      "interests_required": "Interests are required",
+      "phone_format": "Only numbers, spaces and the characters ( ) - + are allowed"
     },
     "col_id": "ID",
     "col_name": "Name"

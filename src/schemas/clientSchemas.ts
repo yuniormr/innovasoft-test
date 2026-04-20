@@ -22,10 +22,12 @@ export const createClientSchema = (t: TFunction) =>
       .string()
       .trim()
       .required(t("clients.validation.mobile_required"))
-      .max(20, t("clients.validation.mobile_max")),
+      .max(20, t("clients.validation.mobile_max"))
+      .matches(/^[0-9\s()\-+]*$/, t("clients.validation.phone_format")),
     otroTelefono: yup
       .string()
       .max(20, t("clients.validation.other_phone_max"))
+      .matches(/^[0-9\s()\-+]*$/, t("clients.validation.phone_format"))
       .default(""),
     direccion: yup
       .string()
