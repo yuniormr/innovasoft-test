@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import AppBarHeader from './AppBarHeader';
-import SidebarMenu, { DRAWER_WIDTH } from './SidebarMenu';
+import SidebarMenu from './SidebarMenu';
 
 interface MainLayoutProps {
   children: ReactNode;
