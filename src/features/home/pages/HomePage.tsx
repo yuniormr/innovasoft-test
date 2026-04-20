@@ -29,7 +29,7 @@ export default function HomePage() {
           fontSize: { xs: '1.5rem', sm: '2rem' },
         }}
       >
-        {t('home.welcome')}, {user?.username}!
+        {t('home.welcome')}, {user?.username.charAt(0).toUpperCase() + '' + user?.username.slice(1)}!
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
         {t('home.subtitle')}

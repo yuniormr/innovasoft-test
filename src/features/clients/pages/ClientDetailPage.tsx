@@ -16,6 +16,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import MainLayout from '../../../components/layout/MainLayout';
 import { clientService } from '../../../api/clientService';
+import { interestsService } from '../../../api/interestsService';
 import { useNotification } from '../../../hooks/useNotification';
 import { ROUTES, GENDER } from '../../../utils/constants';
 
@@ -54,6 +55,15 @@ function ClientDetailContent() {
             },
         },
     );
+
+    const { data: interests = [] } = useQuery(
+        ['interests'],
+        () => interestsService.getAll(),
+        { staleTime: 1000 * 60 * 10, suspense: true },
+    );
+
+    const interestId = client!.interesesId ?? client!.interesFK;
+    const interestLabel = interests.find((i) => String(i.id) === String(interestId))?.descripcion;
 
     // client is guaranteed to be defined — suspense ensures it
     const genderLabel =
@@ -131,7 +141,7 @@ function ClientDetailContent() {
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <DetailField label={t('clients.fields.mobile')} value={client!.telefonoCelular || client!.celular} />
+                        <DetailField label={t('clients.fields.mobile')} value={client!.celular || client!.telefonoCelular} />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <DetailField label={t('clients.fields.other_phone')} value={client!.otroTelefono} />
@@ -164,13 +174,13 @@ function ClientDetailContent() {
                     </Grid>
 
                     {/* Intereses */}
-                    {(client!.interesesId || client!.interesFK) && (
+                    {interestLabel && (
                         <Grid item xs={12}>
                             <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                                 {t('clients.fields.interests')}
                             </Typography>
                             <Box sx={{ mt: 0.5 }}>
-                                <Chip label={client!.interesesId || client!.interesFK} size="small" variant="outlined" />
+                                <Chip label={interestLabel} size="small" variant="outlined" />
                             </Box>
                         </Grid>
                     )}

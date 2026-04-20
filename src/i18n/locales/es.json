@@ -21,7 +21,8 @@
     "success_save": "Proceso realizado correctamente.",
     "success_delete": "Registro eliminado correctamente.",
     "success_create": "Registro creado correctamente.",
-    "success_update": "Registro actualizado correctamente."
+    "success_update": "Registro actualizado correctamente.",
+    "language": "Idioma"
   },
   "auth": {
     "login_title": "Iniciar Sesión",
@@ -47,14 +48,22 @@
       "password_uppercase": "Debe contener al menos una mayúscula",
       "password_lowercase": "Debe contener al menos una minúscula",
       "password_number": "Debe contener al menos un número"
-    }
+    },
+    "invalid_credentials": "Usuario o contraseña incorrectos.",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "register_success": "Cuenta creada correctamente. Puede iniciar sesión.",
+    "register_error": "Hubo un error al crear la cuenta. Intente de nuevo."
   },
   "home": {
     "title": "Bienvenido",
     "subtitle": "Sistema de Gestión de Clientes",
     "clients_card": "Consulta de Clientes",
     "clients_card_desc": "Gestione el registro, consulta y actualización de clientes",
-    "go_to_clients": "Ir a Clientes"
+    "go_to_clients": "Ir a Clientes",
+    "welcome": "Bienvenido",
+    "clients_desc": "Gestione el registro, consulta y actualización de clientes",
+    "go": "Ir a Clientes"
   },
   "clients": {
     "title": "Consulta de Clientes",
@@ -101,7 +110,9 @@
       "bio_required": "La reseña personal es requerida",
       "bio_max": "Máximo 200 caracteres",
       "interests_required": "Los intereses son requeridos"
-    }
+    },
+    "col_id": "ID",
+    "col_name": "Nombre"
   },
   "nav": {
     "home": "INICIO",
@@ -112,6 +123,8 @@
     "page_not_found_title": "404",
     "page_not_found_subtitle": "Página no encontrada",
     "page_not_found_desc": "La página que busca no existe o fue movida.",
-    "go_home": "Ir al Inicio"
+    "go_home": "Ir al Inicio",
+    "not_found_title": "Página no encontrada",
+    "not_found_desc": "La página que busca no existe o fue movida."
   }
 }

@@ -21,7 +21,8 @@
     "success_save": "Process completed successfully.",
     "success_delete": "Record deleted successfully.",
     "success_create": "Record created successfully.",
-    "success_update": "Record updated successfully."
+    "success_update": "Record updated successfully.",
+    "language": "Language"
   },
   "auth": {
     "login_title": "Sign In",
@@ -47,14 +48,22 @@
       "password_uppercase": "Must contain at least one uppercase letter",
       "password_lowercase": "Must contain at least one lowercase letter",
       "password_number": "Must contain at least one number"
-    }
+    },
+    "invalid_credentials": "Invalid username or password.",
+    "login": "Sign in",
+    "register": "Register",
+    "register_success": "Account created successfully. You can now sign in.",
+    "register_error": "There was an error creating the account. Please try again."
   },
   "home": {
     "title": "Welcome",
     "subtitle": "Customer Management System",
     "clients_card": "Customer Query",
     "clients_card_desc": "Manage customer registration, queries and updates",
-    "go_to_clients": "Go to Customers"
+    "go_to_clients": "Go to Customers",
+    "welcome": "Welcome",
+    "clients_desc": "Manage customer registration, queries and updates",
+    "go": "Go to Customers"
   },
   "clients": {
     "title": "Customer Query",
@@ -101,7 +110,9 @@
       "bio_required": "Personal bio is required",
       "bio_max": "Maximum 200 characters",
       "interests_required": "Interests are required"
-    }
+    },
+    "col_id": "ID",
+    "col_name": "Name"
   },
   "nav": {
     "home": "HOME",
@@ -112,6 +123,8 @@
     "page_not_found_title": "404",
     "page_not_found_subtitle": "Page Not Found",
     "page_not_found_desc": "The page you are looking for does not exist or has been moved.",
-    "go_home": "Go Home"
+    "go_home": "Go Home",
+    "not_found_title": "Page Not Found",
+    "not_found_desc": "The page you are looking for does not exist or has been moved."
   }
 }

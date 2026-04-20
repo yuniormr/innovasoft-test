@@ -24,10 +24,10 @@ export const clientValidators = {
     else if (v.identificacion.length > 20)
       errors.identificacion = t("clients.validation.id_max");
 
-    if (!v.telefonoCelular || !v.telefonoCelular.trim())
-      errors.telefonoCelular = t("clients.validation.mobile_required");
-    else if (v.telefonoCelular.length > 20)
-      errors.telefonoCelular = t("clients.validation.mobile_max");
+    if (!v.celular || !v.celular.trim())
+      errors.celular = t("clients.validation.mobile_required");
+    else if (v.celular.length > 20)
+      errors.celular = t("clients.validation.mobile_max");
 
     if (v.otroTelefono && v.otroTelefono.length > 20)
       errors.otroTelefono = t("clients.validation.other_phone_max");

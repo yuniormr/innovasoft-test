@@ -45,7 +45,7 @@ export default function ClientForm({ initialValues, onSubmit, onBack, loading }:
       nombre: '',
       apellidos: '',
       identificacion: '',
-      telefonoCelular: '',
+      celular: '',
       otroTelefono: '',
       direccion: '',
       fNacimiento: '',
@@ -125,9 +125,9 @@ export default function ClientForm({ initialValues, onSubmit, onBack, loading }:
             <Grid item xs={12} sm={6}>
               <TextField
                 label={req(t('clients.fields.mobile'))}
-                {...register('telefonoCelular')}
-                error={!!errors.telefonoCelular}
-                helperText={errors.telefonoCelular?.message}
+                {...register('celular')}
+                error={!!errors.celular}
+                helperText={errors.celular?.message}
                 fullWidth
                 inputProps={{ maxLength: 20 }}
               />

@@ -72,9 +72,9 @@ export default function RegisterPage() {
               </Typography>
             </Box>
             <Typography variant="h6" sx={{ fontWeight: 700, color: 'primary.main' }}>
-              cl<span style={{ color: '#92400E' }}>a</span>ss{' '}
+              <span style={{ color: '#92400E' }}>compa</span>ñia{' '}
               <Typography component="span" variant="h6" sx={{ fontWeight: 400, color: 'text.secondary' }}>
-                SOFTWARE
+                PRUEBA
               </Typography>
             </Typography>
           </Box>

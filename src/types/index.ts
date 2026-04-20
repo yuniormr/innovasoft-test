@@ -27,8 +27,8 @@ export interface Client {
   identificacion: string;
   nombre: string;
   apellidos: string;
-  telefonoCelular?: string;
   celular?: string;
+  telefonoCelular?: string;
   otroTelefono?: string;
   direccion?: string;
   fNacimiento?: string;
@@ -46,7 +46,7 @@ export interface ClientFormValues {
   nombre: string;
   apellidos: string;
   identificacion: string;
-  telefonoCelular: string;
+  celular: string;
   otroTelefono: string;
   direccion: string;
   fNacimiento: string;

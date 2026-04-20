@@ -18,7 +18,7 @@ export const createClientSchema = (t: TFunction) =>
       .trim()
       .required(t("clients.validation.id_required"))
       .max(20, t("clients.validation.id_max")),
-    telefonoCelular: yup
+    celular: yup
       .string()
       .trim()
       .required(t("clients.validation.mobile_required"))
