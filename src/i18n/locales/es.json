@@ -43,7 +43,7 @@
       "email_required": "El correo es requerido",
       "email_invalid": "Ingrese un correo válido",
       "password_required": "La contraseña es requerida",
-      "password_min": "La contraseña debe tener al menos 6 caracteres",
+      "password_min": "La contraseña debe tener al menos 10 caracteres",
       "password_max": "La contraseña no puede superar 20 caracteres",
       "password_uppercase": "Debe contener al menos una mayúscula",
       "password_lowercase": "Debe contener al menos una minúscula",

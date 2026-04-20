@@ -32,10 +32,9 @@ export const createRegisterSchema = (t: TFunction) =>
     password: yup
       .string()
       .required(t("auth.validation.password_required"))
-      .min(6, t("auth.validation.password_min"))
+      .min(10, t("auth.validation.password_min"))
       .max(20, t("auth.validation.password_max"))
       .matches(/[A-Z]/, t("auth.validation.password_uppercase"))
       .matches(/[a-z]/, t("auth.validation.password_lowercase"))
-      .matches(/\d/, t("auth.validation.password_number"))
-      .matches(/[^A-Za-z0-9]/, t("auth.validation.password_special")),
+      .matches(/\d/, t("auth.validation.password_number")),
   });
