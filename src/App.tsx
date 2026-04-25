@@ -15,22 +15,29 @@ import '@fontsource/inter/600.css';
 import '@fontsource/inter/700.css';
 import './i18n/i18n';
 
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react"
+
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppThemeProvider>
-        <BrowserRouter>
-          <NotificationProvider>
-            <AuthProvider>
-              <ClientProvider>
-                <AppRouter />
-                <Notification />
-              </ClientProvider>
-            </AuthProvider>
-          </NotificationProvider>
-        </BrowserRouter>
-      </AppThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <AppThemeProvider>
+          <BrowserRouter>
+            <NotificationProvider>
+              <AuthProvider>
+                <ClientProvider>
+                  <AppRouter />
+                  <Notification />
+                </ClientProvider>
+              </AuthProvider>
+            </NotificationProvider>
+          </BrowserRouter>
+        </AppThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+      <SpeedInsights />
+      <Analytics />
+    </>
   );
 }
