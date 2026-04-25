@@ -10,8 +10,10 @@ import ClientForm from '../components/ClientForm';
 import { clientService } from '../../../api/clientService';
 import { useAuth } from '../../../hooks/useAuth';
 import { useNotification } from '../../../hooks/useNotification';
+import { parseValidationErrors } from '../../../utils/apiErrors';
 import { ROUTES } from '../../../utils/constants';
 import type { Client, ClientFormValues } from '../../../types';
+import type { ServerFieldErrors } from '../../../utils/apiErrors';
 
 function formatDateForInput(dateStr: string | undefined): string {
   if (!dateStr) return '';
@@ -41,9 +43,10 @@ interface MaintenanceFormProps {
   onSubmit: (values: ClientFormValues) => void;
   onBack: () => void;
   loading: boolean;
+  serverErrors?: ServerFieldErrors | null;
 }
 
-function ClientMaintenanceForm({ id, isEdit, onSubmit, onBack, loading }: MaintenanceFormProps) {
+function ClientMaintenanceForm({ id, isEdit, onSubmit, onBack, loading, serverErrors }: MaintenanceFormProps) {
   const { t } = useTranslation();
   const history = useHistory();
   const { showError } = useNotification();
@@ -69,6 +72,7 @@ function ClientMaintenanceForm({ id, isEdit, onSubmit, onBack, loading }: Mainte
       onSubmit={onSubmit}
       onBack={onBack}
       loading={loading}
+      serverErrors={serverErrors}
     />
   );
 }
@@ -82,6 +86,8 @@ export default function ClientMaintenancePage() {
   const qc = useQueryClient();
 
   const isEdit = !!id;
+
+  const [serverErrors, setServerErrors] = React.useState<ServerFieldErrors | null>(null);
 
   const { mutate: save, isLoading: saving } = useMutation(
     (values: ClientFormValues) =>
@@ -119,13 +125,19 @@ export default function ClientMaintenancePage() {
         }),
     {
       onSuccess: () => {
+        setServerErrors(null);
         qc.invalidateQueries(['clients']);
         if (isEdit) qc.invalidateQueries(['client', id]);
         showSuccess(isEdit ? t('common.success_update') : t('common.success_create'));
         history.push(ROUTES.CLIENTS);
       },
-      onError: () => {
-        showError(t('common.error_generic'));
+      onError: (error) => {
+        const fieldErrors = parseValidationErrors(error);
+        if (fieldErrors) {
+          setServerErrors(fieldErrors);
+        } else {
+          showError(t('common.error_generic'));
+        }
       },
     },
   );
@@ -152,6 +164,7 @@ export default function ClientMaintenancePage() {
           onSubmit={save}
           onBack={() => history.push(ROUTES.CLIENTS)}
           loading={saving}
+          serverErrors={serverErrors}
         />
       </Suspense>
     </MainLayout>

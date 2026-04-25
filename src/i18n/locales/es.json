@@ -128,5 +128,22 @@
     "go_home": "Ir al Inicio",
     "not_found_title": "Página no encontrada",
     "not_found_desc": "La página que busca no existe o fue movida."
+  },
+  "server_validation": {
+    "name_min_length": "Debe tener al menos 2 caracteres.",
+    "name_only_letters": "Solo puede contener letras, espacios y guiones.",
+    "phone_min_digits": "Debe contener al menos 7 dígitos.",
+    "phone_invalid_chars": "Solo puede contener dígitos, espacios, guiones, paréntesis y '+'.",
+    "id_format": "Debe tener entre 5 y 20 caracteres alfanuméricos o guiones, sin espacios.",
+    "date_format": "Debe tener el formato YYYY-MM-DD.",
+    "field_blank": "No puede estar vacío o contener solo espacios.",
+    "password_length": "La contraseña debe tener entre 8 y 20 caracteres.",
+    "password_uppercase": "La contraseña debe contener al menos una mayúscula.",
+    "password_lowercase": "La contraseña debe contener al menos una minúscula.",
+    "password_number": "La contraseña debe contener al menos un número.",
+    "string_too_short": "El valor ingresado es demasiado corto.",
+    "string_too_long": "El valor ingresado es demasiado largo.",
+    "required": "Este campo es requerido.",
+    "gender_invalid": "El sexo debe ser M o F."
   }
 }

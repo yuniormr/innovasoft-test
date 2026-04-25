@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import TextField from '@mui/material/TextField';
@@ -18,13 +18,15 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../utils/constants';
 import { createRegisterSchema } from '../../../schemas/authSchemas';
 import type { RegisterFormValues } from '../../../types';
+import type { ServerFieldErrors } from '../../../utils/apiErrors';
 
 interface RegisterFormProps {
   onSubmit: (values: RegisterFormValues) => void;
   loading: boolean;
+  serverErrors?: ServerFieldErrors | null;
 }
 
-export default function RegisterForm({ onSubmit, loading }: RegisterFormProps) {
+export default function RegisterForm({ onSubmit, loading, serverErrors }: RegisterFormProps) {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -33,11 +35,20 @@ export default function RegisterForm({ onSubmit, loading }: RegisterFormProps) {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<RegisterFormValues>({
     resolver: yupResolver(schema),
     defaultValues: { username: '', email: '', password: '' },
   });
+
+  useEffect(() => {
+    if (serverErrors) {
+      Object.entries(serverErrors).forEach(([field, key]) => {
+        setError(field as keyof RegisterFormValues, { type: 'server', message: t(key) });
+      });
+    }
+  }, [serverErrors, setError, t]);
 
   return (
     <Box

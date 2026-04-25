@@ -14,15 +14,17 @@ import { interestsService } from '../../../api/interestsService';
 import { GENDER } from '../../../utils/constants';
 import { createClientSchema } from '../../../schemas/clientSchemas';
 import type { ClientFormValues } from '../../../types';
+import type { ServerFieldErrors } from '../../../utils/apiErrors';
 
 interface ClientFormProps {
   initialValues?: ClientFormValues | null;
   onSubmit: (values: ClientFormValues) => void;
   onBack: () => void;
   loading: boolean;
+  serverErrors?: ServerFieldErrors | null;
 }
 
-export default function ClientForm({ initialValues, onSubmit, onBack, loading }: ClientFormProps) {
+export default function ClientForm({ initialValues, onSubmit, onBack, loading, serverErrors }: ClientFormProps) {
   const { t } = useTranslation();
 
   const schema = useMemo(() => createClientSchema(t), [t]);
@@ -38,6 +40,7 @@ export default function ClientForm({ initialValues, onSubmit, onBack, loading }:
     handleSubmit,
     control,
     reset,
+    setError,
     formState: { errors },
   } = useForm<ClientFormValues>({
     resolver: yupResolver(schema),
@@ -60,6 +63,14 @@ export default function ClientForm({ initialValues, onSubmit, onBack, loading }:
   useEffect(() => {
     if (initialValues) reset(initialValues);
   }, [initialValues, reset]);
+
+  useEffect(() => {
+    if (serverErrors) {
+      Object.entries(serverErrors).forEach(([field, key]) => {
+        setError(field as keyof ClientFormValues, { type: 'server', message: t(key) });
+      });
+    }
+  }, [serverErrors, setError, t]);
 
   const req = (label: string): React.ReactElement => (
     <>

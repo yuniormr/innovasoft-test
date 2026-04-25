@@ -128,5 +128,22 @@
     "go_home": "Go Home",
     "not_found_title": "Page Not Found",
     "not_found_desc": "The page you are looking for does not exist or has been moved."
+  },
+  "server_validation": {
+    "name_min_length": "Must have at least 2 characters.",
+    "name_only_letters": "Must only contain letters, spaces and hyphens.",
+    "phone_min_digits": "Must contain at least 7 digits.",
+    "phone_invalid_chars": "Must only contain digits, spaces, hyphens, parentheses and '+'.",
+    "id_format": "Must be 5 to 20 alphanumeric characters or hyphens, no spaces.",
+    "date_format": "Must have the format YYYY-MM-DD.",
+    "field_blank": "Cannot be empty or contain only spaces.",
+    "password_length": "Password must be between 8 and 20 characters.",
+    "password_uppercase": "Password must contain at least one uppercase letter.",
+    "password_lowercase": "Password must contain at least one lowercase letter.",
+    "password_number": "Password must contain at least one number.",
+    "string_too_short": "The entered value is too short.",
+    "string_too_long": "The entered value is too long.",
+    "required": "This field is required.",
+    "gender_invalid": "Gender must be M or F."
   }
 }

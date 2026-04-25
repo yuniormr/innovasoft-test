@@ -9,8 +9,10 @@ import RegisterForm from '../components/RegisterForm';
 import { authService } from '../../../api/authService';
 import { useAuth } from '../../../hooks/useAuth';
 import { useNotification } from '../../../hooks/useNotification';
+import { parseValidationErrors } from '../../../utils/apiErrors';
 import { ROUTES } from '../../../utils/constants';
 import type { RegisterFormValues } from '../../../types';
+import type { ServerFieldErrors } from '../../../utils/apiErrors';
 import { useMutation } from '@tanstack/react-query';
 
 export default function RegisterPage() {
@@ -19,16 +21,24 @@ export default function RegisterPage() {
   const { isAuthenticated } = useAuth();
   const { showSuccess, showError } = useNotification();
 
+  const [serverErrors, setServerErrors] = React.useState<ServerFieldErrors | null>(null);
+
   const { mutate: register, isLoading: loading } = useMutation(
     (values: RegisterFormValues) =>
       authService.register(values.username, values.email, values.password),
     {
       onSuccess: () => {
+        setServerErrors(null);
         showSuccess(t('auth.register_success'));
         history.push(ROUTES.LOGIN);
       },
-      onError: () => {
-        showError(t('auth.register_error'));
+      onError: (error) => {
+        const fieldErrors = parseValidationErrors(error);
+        if (fieldErrors) {
+          setServerErrors(fieldErrors);
+        } else {
+          showError(t('auth.register_error'));
+        }
       },
     },
   );
@@ -83,7 +93,7 @@ export default function RegisterPage() {
             {t('auth.register_title')}
           </Typography>
 
-          <RegisterForm onSubmit={handleSubmit} loading={loading} />
+          <RegisterForm onSubmit={handleSubmit} loading={loading} serverErrors={serverErrors} />
         </CardContent>
       </Card>
     </Box>
