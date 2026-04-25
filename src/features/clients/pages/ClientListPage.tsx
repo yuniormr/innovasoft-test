@@ -28,10 +28,21 @@ interface TableContentProps {
 }
 
 function ClientTableContent({ filters, userId, onView, onEdit, onDelete }: TableContentProps) {
+  const { t } = useTranslation();
+  const { showError } = useNotification();
+
   const { data: clients = [] } = useQuery(
     ['clients', filters, userId],
     () => clientService.list({ ...filters, usuarioId: userId }),
-    { enabled: !!userId, keepPreviousData: true, suspense: true },
+    {
+      enabled: !!userId,
+      keepPreviousData: true,
+      suspense: true,
+      useErrorBoundary: false,
+      onError: () => {
+        showError(t('common.error_generic'));
+      },
+    },
   );
 
   return <ClientTable clients={clients} onView={onView} onEdit={onEdit} onDelete={onDelete} />;
