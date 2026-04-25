@@ -27,7 +27,7 @@ interface RegisterFormProps {
 }
 
 export default function RegisterForm({ onSubmit, loading, serverErrors }: RegisterFormProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const schema = useMemo(() => createRegisterSchema(t), [t]);
@@ -45,10 +45,11 @@ export default function RegisterForm({ onSubmit, loading, serverErrors }: Regist
   useEffect(() => {
     if (serverErrors) {
       Object.entries(serverErrors).forEach(([field, key]) => {
-        setError(field as keyof RegisterFormValues, { type: 'server', message: t(key) });
+        const message = i18n.exists(key) ? t(key) : t('common.error_generic');
+        setError(field as keyof RegisterFormValues, { type: 'server', message });
       });
     }
-  }, [serverErrors, setError, t]);
+  }, [serverErrors, setError, t, i18n]);
 
   return (
     <Box

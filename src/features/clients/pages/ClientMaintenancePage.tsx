@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -64,7 +64,10 @@ function ClientMaintenanceForm({ id, isEdit, onSubmit, onBack, loading, serverEr
     },
   );
 
-  const initialValues = clientData ? mapApiToForm(clientData) : null;
+  const initialValues = useMemo(
+    () => (clientData ? mapApiToForm(clientData) : null),
+    [clientData],
+  );
 
   return (
     <ClientForm

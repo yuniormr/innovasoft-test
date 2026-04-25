@@ -25,7 +25,7 @@ interface ClientFormProps {
 }
 
 export default function ClientForm({ initialValues, onSubmit, onBack, loading, serverErrors }: ClientFormProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const schema = useMemo(() => createClientSchema(t), [t]);
 
@@ -67,10 +67,11 @@ export default function ClientForm({ initialValues, onSubmit, onBack, loading, s
   useEffect(() => {
     if (serverErrors) {
       Object.entries(serverErrors).forEach(([field, key]) => {
-        setError(field as keyof ClientFormValues, { type: 'server', message: t(key) });
+        const message = i18n.exists(key) ? t(key) : t('common.error_generic');
+        setError(field as keyof ClientFormValues, { type: 'server', message });
       });
     }
-  }, [serverErrors, setError, t]);
+  }, [serverErrors, setError, t, i18n]);
 
   const req = (label: string): React.ReactElement => (
     <>
