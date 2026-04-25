@@ -95,8 +95,7 @@ export default function ClientMaintenancePage() {
   const { mutate: save, isLoading: saving } = useMutation(
     (values: ClientFormValues) =>
       isEdit
-        ? clientService.update({
-          id,
+        ? clientService.update(id, {
           nombre: values.nombre,
           apellidos: values.apellidos,
           identificacion: values.identificacion,

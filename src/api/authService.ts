@@ -4,7 +4,7 @@ import type { LoginResponse, RegisterResponse } from "../types";
 export const authService = {
   async login(username: string, password: string): Promise<LoginResponse> {
     const { data } = await axiosInstance.post<LoginResponse>(
-      "/api/Authenticate/login",
+      "/api/auth/login",
       {
         username,
         password,
@@ -19,7 +19,7 @@ export const authService = {
     password: string,
   ): Promise<RegisterResponse> {
     const { data } = await axiosInstance.post<RegisterResponse>(
-      "/api/Authenticate/register",
+      "/api/auth/register",
       {
         username,
         email,
@@ -32,6 +32,6 @@ export const authService = {
   async logout(): Promise<void> {
     // El interceptor de axiosInstance adjunta el Bearer token automáticamente.
     // El BFF local elimina el documento de sesión en MongoDB.
-    await axiosInstance.post("/api/Authenticate/logout");
+    await axiosInstance.post("/api/auth/logout");
   },
 };
