@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://pruebareactjs.test-class.com/Api";
+export const API_BASE_URL = "https://innovasoft-test-backend.onrender.com/";
 
 export const ROUTES = {
   LOGIN: "/login",

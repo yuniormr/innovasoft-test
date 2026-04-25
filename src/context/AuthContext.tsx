@@ -14,7 +14,7 @@ interface AuthState {
 
 export interface AuthContextValue extends AuthState {
   login: (username: string, password: string, rememberMe: boolean) => Promise<boolean>;
-  logout: () => void;
+  logout: () => Promise<void>;
   clearError: () => void;
 }
 
@@ -85,7 +85,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    try {
+      await authService.logout();
+    } catch {
+      // Ignoramos el error de red — limpiamos la sesión local de todas formas
+    }
     storage.clearSession();
     dispatch({ type: 'LOGOUT' });
   }, []);
